@@ -1,6 +1,6 @@
 <!-- ![Example Image](server/views/banner.png) -->
 
-# Nimble- Local-first AI Notetaker
+# FileKeeper- Local-first AI Notetaker
 
 Nimble is a simple, privacy-first note app that keeps your notes on your device by default. It works offline. Built-in AI helps you summarize notes, find things quickly, suggest text, and organize with tags. Fast, easy to use, and designed so your data stays private unless you choose to back it up.
 
@@ -16,7 +16,7 @@ Nimble is a simple, privacy-first note app that keeps your notes on your device 
 
 ## Overview
 
-- Nimble focuses on privacy and fast local-first workflows. Notes are stored locally (filesystem in the browser). When you ask the app to use AI, it collects the array of notes and opens a WebSocket connection to an AI service (address provided via environment). The AI runs online and responds via the WebSocket with summaries, relevance-ranked results, extracted quotes, or answers to general queries. The app works offline for creating and editing notes; AI-powered features require an active network connection to the configured WebSocket endpoint.
+- FileKeeper focuses on privacy and fast local-first workflows. Notes are stored locally (filesystem in the browser). When you ask the app to use AI, it collects the array of notes and opens a WebSocket connection to an AI service (address provided via environment). The AI runs online and responds via the WebSocket with summaries, relevance-ranked results, extracted quotes, or answers to general queries. The app works offline for creating and editing notes; AI-powered features require an active network connection to the configured WebSocket endpoint.
 
 ## Features
 
@@ -43,7 +43,7 @@ cd nimble
 ```
 ## Setup
 
-Redirect to Nimble:
+Redirect to FileKeeper:
 
 ```bash
 cd nimble
@@ -66,7 +66,3 @@ bun dev
 ## Usage
 
 Access the app in your web browser at `http://localhost:3000/`.
-
-## Contributors
-
-- Shaurya ([LinkedIn](https://www.linkedin.com/in/shaurya--jha/))
