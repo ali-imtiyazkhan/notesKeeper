@@ -371,11 +371,6 @@ export default function Page() {
             </div>
           </header>
           <div className="flex flex-1 flex-col md:flex-row p-2 md:p-4 pt-0 md:min-h-0 md:overflow-hidden overflow-hidden">
-            {/* <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-          </div> */}
             <div
               className="bg-muted/50 dark:bg-[#282c34] rounded-xl md:min-h-0 md:flex md:flex-col md:overflow-hidden flex flex-col overflow-hidden"
               style={{

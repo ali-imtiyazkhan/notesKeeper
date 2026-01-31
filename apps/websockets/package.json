@@ -4,6 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "duild": "",
     "dev": "bun index.ts"
   },
   "devDependencies": {
