@@ -6,43 +6,43 @@ const sampleFolders = [
     name: "Projects",
     color: "#3b82f6",
     iconKey: "folder",
-    createdAt: "2024-01-15T10:00:00.000Z"
+    createdAt: "2024-01-15T10:00:00.000Z",
   },
   {
     id: "folder-2",
     name: "Ideas",
     color: "#10b981",
     iconKey: "lightbulb",
-    createdAt: "2024-01-16T10:00:00.000Z"
+    createdAt: "2024-01-16T10:00:00.000Z",
   },
   {
     id: "folder-3",
     name: "Journal",
     color: "#f59e0b",
     iconKey: "book",
-    createdAt: "2024-01-17T10:00:00.000Z"
+    createdAt: "2024-01-17T10:00:00.000Z",
   },
   {
     id: "folder-4",
     name: "Research",
     color: "#8b5cf6",
     iconKey: "search",
-    createdAt: "2024-01-18T10:00:00.000Z"
+    createdAt: "2024-01-18T10:00:00.000Z",
   },
   {
     id: "folder-5",
     name: "Meeting Notes",
     color: "#ec4899",
     iconKey: "users",
-    createdAt: "2024-01-19T10:00:00.000Z"
+    createdAt: "2024-01-19T10:00:00.000Z",
   },
   {
     id: "folder-6",
     name: "Technical Docs",
     color: "#06b6d4",
     iconKey: "code",
-    createdAt: "2024-01-20T10:00:00.000Z"
-  }
+    createdAt: "2024-01-20T10:00:00.000Z",
+  },
 ];
 
 const sampleNotes = [
@@ -53,7 +53,7 @@ const sampleNotes = [
     folderId: "folder-1",
     createdAt: "2024-01-20T10:00:00.000Z",
     updatedAt: "2024-01-20T10:00:00.000Z",
-    tags: ["database", "scaling", "architecture", "performance"]
+    tags: ["database", "scaling", "architecture", "performance"],
   },
   {
     id: "note-2",
@@ -62,7 +62,7 @@ const sampleNotes = [
     folderId: "folder-2",
     createdAt: "2024-01-21T10:00:00.000Z",
     updatedAt: "2024-01-21T10:00:00.000Z",
-    tags: ["architecture", "microservices", "kubernetes", "devops"]
+    tags: ["architecture", "microservices", "kubernetes", "devops"],
   },
   {
     id: "note-3",
@@ -71,7 +71,7 @@ const sampleNotes = [
     folderId: "folder-2",
     createdAt: "2024-01-22T10:00:00.000Z",
     updatedAt: "2024-01-22T10:00:00.000Z",
-    tags: ["product", "mobile", "habits", "startup"]
+    tags: ["product", "mobile", "habits", "startup"],
   },
   {
     id: "note-4",
@@ -80,7 +80,7 @@ const sampleNotes = [
     folderId: "folder-2",
     createdAt: "2024-01-23T10:00:00.000Z",
     updatedAt: "2024-01-23T10:00:00.000Z",
-    tags: ["marketing", "strategy", "social-media", "growth"]
+    tags: ["marketing", "strategy", "social-media", "growth"],
   },
   {
     id: "note-5",
@@ -89,7 +89,7 @@ const sampleNotes = [
     folderId: "folder-1",
     createdAt: "2024-01-24T10:00:00.000Z",
     updatedAt: "2024-01-24T10:00:00.000Z",
-    tags: ["project-x", "planning", "milestones", "roadmap"]
+    tags: ["project-x", "planning", "milestones", "roadmap"],
   },
   {
     id: "note-6",
@@ -98,7 +98,7 @@ const sampleNotes = [
     folderId: "folder-1",
     createdAt: "2024-01-25T10:00:00.000Z",
     updatedAt: "2024-01-25T10:00:00.000Z",
-    tags: ["project-x", "implementation", "development", "aws"]
+    tags: ["project-x", "implementation", "development", "aws"],
   },
   {
     id: "note-7",
@@ -107,7 +107,7 @@ const sampleNotes = [
     folderId: "folder-3",
     createdAt: "2024-01-25T18:00:00.000Z",
     updatedAt: "2024-01-25T18:00:00.000Z",
-    tags: ["reflection", "learning", "personal"]
+    tags: ["reflection", "learning", "personal"],
   },
   {
     id: "note-8",
@@ -116,7 +116,7 @@ const sampleNotes = [
     folderId: "folder-4",
     createdAt: "2024-01-26T10:00:00.000Z",
     updatedAt: "2024-01-26T10:00:00.000Z",
-    tags: ["ai", "rag", "research", "embeddings"]
+    tags: ["ai", "rag", "research", "embeddings"],
   },
   {
     id: "note-9",
@@ -125,7 +125,7 @@ const sampleNotes = [
     folderId: "folder-1",
     createdAt: "2024-01-27T10:00:00.000Z",
     updatedAt: "2024-01-27T10:00:00.000Z",
-    tags: ["performance", "optimization", "caching", "monitoring"]
+    tags: ["performance", "optimization", "caching", "monitoring"],
   },
   {
     id: "note-10",
@@ -134,7 +134,7 @@ const sampleNotes = [
     folderId: "folder-5",
     createdAt: "2024-01-28T10:00:00.000Z",
     updatedAt: "2024-01-28T10:00:00.000Z",
-    tags: ["meeting", "roadmap", "team", "planning"]
+    tags: ["meeting", "roadmap", "team", "planning"],
   },
   {
     id: "note-11",
@@ -143,7 +143,7 @@ const sampleNotes = [
     folderId: "folder-6",
     createdAt: "2024-01-29T10:00:00.000Z",
     updatedAt: "2024-01-29T10:00:00.000Z",
-    tags: ["api", "documentation", "best-practices", "technical"]
+    tags: ["api", "documentation", "best-practices", "technical"],
   },
   {
     id: "note-12",
@@ -152,7 +152,7 @@ const sampleNotes = [
     folderId: "folder-6",
     createdAt: "2024-01-30T10:00:00.000Z",
     updatedAt: "2024-01-30T10:00:00.000Z",
-    tags: ["security", "best-practices", "implementation"]
+    tags: ["security", "best-practices", "implementation"],
   },
   {
     id: "note-13",
@@ -161,7 +161,7 @@ const sampleNotes = [
     folderId: "folder-2",
     createdAt: "2024-02-01T10:00:00.000Z",
     updatedAt: "2024-02-01T10:00:00.000Z",
-    tags: ["research", "user-feedback", "product"]
+    tags: ["research", "user-feedback", "product"],
   },
   {
     id: "note-14",
@@ -170,7 +170,7 @@ const sampleNotes = [
     folderId: "folder-1",
     createdAt: "2024-02-02T10:00:00.000Z",
     updatedAt: "2024-02-02T10:00:00.000Z",
-    tags: ["database", "migration", "postgresql", "architecture"]
+    tags: ["database", "migration", "postgresql", "architecture"],
   },
   {
     id: "note-15",
@@ -179,7 +179,7 @@ const sampleNotes = [
     folderId: "folder-6",
     createdAt: "2024-02-03T10:00:00.000Z",
     updatedAt: "2024-02-03T10:00:00.000Z",
-    tags: ["frontend", "react", "architecture", "best-practices"]
+    tags: ["frontend", "react", "architecture", "best-practices"],
   },
   {
     id: "note-16",
@@ -188,7 +188,7 @@ const sampleNotes = [
     folderId: "folder-6",
     createdAt: "2024-02-04T10:00:00.000Z",
     updatedAt: "2024-02-04T10:00:00.000Z",
-    tags: ["backend", "nodejs", "microservices", "architecture"]
+    tags: ["backend", "nodejs", "microservices", "architecture"],
   },
   {
     id: "note-17",
@@ -197,7 +197,7 @@ const sampleNotes = [
     folderId: "folder-6",
     createdAt: "2024-02-05T10:00:00.000Z",
     updatedAt: "2024-02-05T10:00:00.000Z",
-    tags: ["devops", "cicd", "pipeline", "automation"]
+    tags: ["devops", "cicd", "pipeline", "automation"],
   },
   {
     id: "note-18",
@@ -206,7 +206,7 @@ const sampleNotes = [
     folderId: "folder-2",
     createdAt: "2024-02-06T10:00:00.000Z",
     updatedAt: "2024-02-06T10:00:00.000Z",
-    tags: ["product", "launch", "strategy", "marketing"]
+    tags: ["product", "launch", "strategy", "marketing"],
   },
   {
     id: "note-19",
@@ -215,7 +215,7 @@ const sampleNotes = [
     folderId: "folder-5",
     createdAt: "2024-02-07T10:00:00.000Z",
     updatedAt: "2024-02-07T10:00:00.000Z",
-    tags: ["support", "customer-service", "process"]
+    tags: ["support", "customer-service", "process"],
   },
   {
     id: "note-20",
@@ -224,35 +224,41 @@ const sampleNotes = [
     folderId: "folder-4",
     createdAt: "2024-02-08T10:00:00.000Z",
     updatedAt: "2024-02-08T10:00:00.000Z",
-    tags: ["analytics", "data", "bi", "strategy"]
-  }
+    tags: ["analytics", "data", "bi", "strategy"],
+  },
 ];
 
 const testQueries = [
   {
     name: "Find Query",
-    message: "Where did I write about database scaling? Find all mentions and provide specific locations."
+    message:
+      "Where did I write about database scaling? Find all mentions and provide specific locations.",
   },
   {
     name: "Summarize Query",
-    message: "Summarize all my notes about Project X. Include key milestones, team structure, timeline, and current status."
+    message:
+      "Summarize all my notes about Project X. Include key milestones, team structure, timeline, and current status.",
   },
   {
     name: "Cross-Reference Query",
-    message: "What are the common themes across my notes in the Ideas folder? List the main topics and how they relate to each other."
+    message:
+      "What are the common themes across my notes in the Ideas folder? List the main topics and how they relate to each other.",
   },
   {
     name: "Technical Deep Dive",
-    message: "Based on my technical documentation, what are the best practices I've documented for API design, security, and performance optimization? Provide a comprehensive list."
+    message:
+      "Based on my technical documentation, what are the best practices I've documented for API design, security, and performance optimization? Provide a comprehensive list.",
   },
   {
     name: "Project Analysis",
-    message: "Analyze my Project X notes. What are the phases, timeline, team composition, budget, and success metrics? Are there any risks or concerns mentioned?"
+    message:
+      "Analyze my Project X notes. What are the phases, timeline, team composition, budget, and success metrics? Are there any risks or concerns mentioned?",
   },
   {
     name: "Research Summary",
-    message: "Summarize my research notes about AI, RAG, and vector embeddings. What are the key concepts, implementation details, and benefits?"
-  }
+    message:
+      "Summarize my research notes about AI, RAG, and vector embeddings. What are the key concepts, implementation details, and benefits?",
+  },
 ];
 
 async function testQuery(queryIndex: number = 0) {
@@ -271,29 +277,33 @@ async function testQuery(queryIndex: number = 0) {
 
   ws.on("open", () => {
     console.log(`\n${"=".repeat(80)}`);
-    console.log(`✅ Test ${queryIndex + 1}/${testQueries.length}: ${test.name}`);
+    console.log(
+      `✅ Test ${queryIndex + 1}/${testQueries.length}: ${test.name}`,
+    );
     console.log(`${"=".repeat(80)}`);
     console.log("✅ Connected to WebSocket server");
-    
+
     const message = {
       message: test.message,
       apiKey: "",
       model: "gemini-1.5-flash",
       config: {
         temperature: 0.3,
-        maxTokens: 4000
+        maxTokens: 4000,
       },
       operationType: "query",
       notes: JSON.stringify(sampleNotes),
-      folders: JSON.stringify(sampleFolders)
+      folders: JSON.stringify(sampleFolders),
     };
 
     console.log("\n📤 Sending query message...");
     console.log(`Query: ${test.message}`);
     console.log(`Notes: ${sampleNotes.length}`);
     console.log(`Folders: ${sampleFolders.length}`);
-    console.log(`Total content size: ~${JSON.stringify(sampleNotes).length} characters`);
-    
+    console.log(
+      `Total content size: ~${JSON.stringify(sampleNotes).length} characters`,
+    );
+
     ws.send(JSON.stringify(message));
   });
 
@@ -303,7 +313,7 @@ async function testQuery(queryIndex: number = 0) {
       console.log("\n📥 Response received:");
       console.log("Success:", response.success);
       console.log("Type:", response.type);
-      
+
       if (response.success && response.type === "query") {
         console.log("\n🤖 AI Response:");
         console.log("─".repeat(80));
@@ -317,7 +327,7 @@ async function testQuery(queryIndex: number = 0) {
     } catch (e) {
       console.log("\n📥 Raw Response:", data.toString());
     }
-    
+
     ws.close();
   });
 
