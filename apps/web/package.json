@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build --no-turbo",
-    "start": "next start",
-    "lint": "eslint"
+    "build": "NEXT_DISABLE_TURBOPACK=1 next build",
+    "start": "next start"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.35.1",
