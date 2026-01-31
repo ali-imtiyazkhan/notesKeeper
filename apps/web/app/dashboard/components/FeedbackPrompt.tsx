@@ -142,7 +142,7 @@ export function FeedbackPrompt({
                             className={cn(
                               "inline-flex size-9 items-center justify-center rounded-2xl bg-muted text-muted-foreground",
                               selected &&
-                                "bg-primary text-primary-foreground shadow-primary/30 shadow-md"
+                              "bg-primary text-primary-foreground shadow-primary/30 shadow-md"
                             )}
                           >
                             <Icon className="size-4" />
