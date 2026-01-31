@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "NEXT_DISABLE_TURBOPACK=1 next build",
+    "build": "next build",
     "start": "next start"
   },
   "dependencies": {
