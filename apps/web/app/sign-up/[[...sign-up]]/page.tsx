@@ -6,13 +6,13 @@ export default async function SignUpPage({
   searchParams: Promise<{ redirect_url?: string }>
 }) {
   const params = await searchParams
-  const redirectUrl = params.redirect_url 
+  const redirectUrl = params.redirect_url
     ? decodeURIComponent(params.redirect_url)
     : '/dashboard'
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
-      <SignUp 
+      <SignUp
         routing="path"
         path="/sign-up"
         forceRedirectUrl={redirectUrl}

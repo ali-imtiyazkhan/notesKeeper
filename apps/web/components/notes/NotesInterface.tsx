@@ -5,10 +5,10 @@ import { getNotes, updateNote } from "@/services/localstorage";
 import * as React from "react";
 import { Sparkles } from "lucide-react";
 
-export default function NotesInterface(){
+export default function NotesInterface() {
 	const { selectedNoteId } = useSelectedNote();
 	const [allNotes, setAllNotes] = React.useState<ReturnType<typeof getNotes>>([]);
-	
+
 	const selected = React.useMemo(() => {
 		const notes = getNotes();
 		return notes.find(n => String(n.id) === String(selectedNoteId));
@@ -60,7 +60,7 @@ export default function NotesInterface(){
 				updatedAt: new Date().toISOString(),
 			};
 			updateNote(String(selectedNoteId), updated);
-			try { window.dispatchEvent(new CustomEvent("nimble:notes-changed")); } catch {}
+			try { window.dispatchEvent(new CustomEvent("nimble:notes-changed")); } catch { }
 		}, 500);
 		return () => clearTimeout(handle);
 	}, [title, content, selectedNoteId, selected]);
@@ -81,7 +81,7 @@ export default function NotesInterface(){
 
 	return (
 		<div className="font-sans h-full flex flex-col p-3 md:p-6">
-			<div className="flex items-center gap-2 mb-3 md:mb-4 flex-shrink-0">
+			<div className="flex items-center gap-2 mb-3 md:mb-4 shrink-0">
 				<input
 					className="flex-1 bg-transparent text-xl md:text-2xl font-semibold outline-none placeholder:text-neutral-400 dark:placeholder:text-[#828997] dark:text-[#d4d4d4]"
 					placeholder="Untitled"

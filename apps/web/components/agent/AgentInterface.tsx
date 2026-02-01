@@ -37,7 +37,7 @@ const DEFAULT_CONFIG = {
     maxTokens: 4000
 }
 
-function useSelectedNoteData(){
+function useSelectedNoteData() {
     const { selectedNoteId } = useSelectedNote()
     const notes = getNotes()
     const note = notes.find(n => String(n.id) === String(selectedNoteId))
@@ -50,7 +50,7 @@ type AgentInterfaceProps = {
     onApiKeyChange?: (value: string) => void
 }
 
-export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: propHasApiKey = false, onApiKeyChange }: AgentInterfaceProps = {}){
+export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: propHasApiKey = false, onApiKeyChange }: AgentInterfaceProps = {}) {
     const note = useSelectedNoteData()
     const [command, setCommand] = React.useState("")
     const [runs, setRuns] = React.useState<Run[]>([])
@@ -68,7 +68,7 @@ export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: pro
     const [inlineShowKey, setInlineShowKey] = React.useState<boolean>(false)
     const [inlineStatus, setInlineStatus] = React.useState<"idle" | "saving" | "saved" | "error">("idle")
     const [inlineError, setInlineError] = React.useState<string>("")
-    
+
     const actualApiKey = React.useMemo(() => {
         const key = propApiKey || getApiKey()
         if (key !== apiKeyRef.current) {
@@ -100,8 +100,8 @@ export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: pro
         setInlineShowKey(false)
     }, [hasApiKey])
 
-    const enqueueRef = React.useRef<(cmd: string) => Promise<void>>(async () => {})
-    
+    const enqueueRef = React.useRef<(cmd: string) => Promise<void>>(async () => { })
+
     React.useEffect(() => {
         const handleAiQuery = (event: CustomEvent) => {
             const { prompt } = event.detail || {}
@@ -124,7 +124,7 @@ export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: pro
             if (!mounted) {
                 return
             }
-            
+
             const apiKey = apiKeyRef.current || getApiKey()
             if (!apiKey) {
                 console.log("No API key, skipping WebSocket connection")
@@ -170,7 +170,7 @@ export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: pro
                     if (!mounted) return
                     try {
                         const response = JSON.parse(event.data.toString())
-                        
+
                         if (response.queryId && pendingQueriesRef.current.has(response.queryId)) {
                             const { resolve } = pendingQueriesRef.current.get(response.queryId)!
                             pendingQueriesRef.current.delete(response.queryId)
@@ -195,7 +195,7 @@ export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: pro
                     console.log("WebSocket disconnected", event.code, event.reason)
                     isConnectingRef.current = false
                     wsRef.current = null
-                    
+
                     const apiKey = apiKeyRef.current || getApiKey()
                     if (shouldReconnectRef.current && mounted && apiKey && event.code !== 1000) {
                         console.log("Scheduling reconnect in 3 seconds...")
@@ -259,25 +259,25 @@ export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: pro
         const next: Run = { id, command: cmd, status: "running", createdAt, output: "" }
         setRuns(prev => [next, ...prev])
 
-        const isGeneralQuery = !cmd.toLowerCase().includes("my notes") && 
-                               !cmd.toLowerCase().includes("my folders") &&
-                               !cmd.toLowerCase().includes("in my notes") &&
-                               !cmd.toLowerCase().includes("from my notes") &&
-                               !cmd.toLowerCase().includes("summarize") &&
-                               !cmd.toLowerCase().includes("find") &&
-                               !cmd.toLowerCase().includes("analyze") &&
-                               (cmd.toLowerCase().includes("quote") ||
-                                cmd.toLowerCase().includes("motivation") ||
-                                cmd.toLowerCase().includes("wisdom") ||
-                                cmd.toLowerCase().includes("productivity tip") ||
-                                cmd.toLowerCase().includes("creative") ||
-                                cmd.toLowerCase().includes("learning insight") ||
-                                cmd.toLowerCase().includes("tip"))
+        const isGeneralQuery = !cmd.toLowerCase().includes("my notes") &&
+            !cmd.toLowerCase().includes("my folders") &&
+            !cmd.toLowerCase().includes("in my notes") &&
+            !cmd.toLowerCase().includes("from my notes") &&
+            !cmd.toLowerCase().includes("summarize") &&
+            !cmd.toLowerCase().includes("find") &&
+            !cmd.toLowerCase().includes("analyze") &&
+            (cmd.toLowerCase().includes("quote") ||
+                cmd.toLowerCase().includes("motivation") ||
+                cmd.toLowerCase().includes("wisdom") ||
+                cmd.toLowerCase().includes("productivity tip") ||
+                cmd.toLowerCase().includes("creative") ||
+                cmd.toLowerCase().includes("learning insight") ||
+                cmd.toLowerCase().includes("tip"))
 
         const notes = isGeneralQuery ? [] : getNotes()
         const folders = isGeneralQuery ? [] : getFolders()
 
-        const config = isGeneralQuery 
+        const config = isGeneralQuery
             ? { temperature: 0.9, maxTokens: 4000 }
             : DEFAULT_CONFIG
 
@@ -305,10 +305,10 @@ export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: pro
 
                 ws = wsRef.current
                 if (!ws || ws.readyState !== WebSocket.OPEN) {
-                    setRuns(prev => prev.map(r => r.id === id ? { 
-                        ...r, 
-                        status: "error", 
-                        output: "WebSocket not connected. Please wait a moment and try again. Make sure the WebSocket server is running on ws://localhost:8080" 
+                    setRuns(prev => prev.map(r => r.id === id ? {
+                        ...r,
+                        status: "error",
+                        output: "WebSocket not connected. Please wait a moment and try again. Make sure the WebSocket server is running on ws://localhost:8080"
                     } : r))
                     return
                 }
@@ -340,46 +340,46 @@ export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: pro
 
             try {
                 const response = await queryPromise
-                
+
                 if (response.success && response.type === "query") {
-                    setRuns(prev => prev.map(r => r.id === id ? { 
-                        ...r, 
-                        status: "success", 
-                        output: response.response || "No response received" 
+                    setRuns(prev => prev.map(r => r.id === id ? {
+                        ...r,
+                        status: "success",
+                        output: response.response || "No response received"
                     } : r))
                 } else if (response.error) {
-                    setRuns(prev => prev.map(r => r.id === id ? { 
-                        ...r, 
-                        status: "error", 
-                        output: `Error: ${response.error}` 
+                    setRuns(prev => prev.map(r => r.id === id ? {
+                        ...r,
+                        status: "error",
+                        output: `Error: ${response.error}`
                     } : r))
                     if (response.error.includes("API key") || response.error.includes("apiKey")) {
                         setHasApiKey(false)
                     }
                 } else {
-                    setRuns(prev => prev.map(r => r.id === id ? { 
-                        ...r, 
-                        status: "error", 
-                        output: `Unexpected response format: ${JSON.stringify(response)}` 
+                    setRuns(prev => prev.map(r => r.id === id ? {
+                        ...r,
+                        status: "error",
+                        output: `Unexpected response format: ${JSON.stringify(response)}`
                     } : r))
                 }
             } catch (error) {
-                setRuns(prev => prev.map(r => r.id === id ? { 
-                    ...r, 
-                    status: "error", 
+                setRuns(prev => prev.map(r => r.id === id ? {
+                    ...r,
+                    status: "error",
                     output: error instanceof Error ? error.message : String(error)
                 } : r))
             }
 
         } catch (error) {
-            setRuns(prev => prev.map(r => r.id === id ? { 
-                ...r, 
-                status: "error", 
-                output: `Failed to send query: ${error instanceof Error ? error.message : String(error)}` 
+            setRuns(prev => prev.map(r => r.id === id ? {
+                ...r,
+                status: "error",
+                output: `Failed to send query: ${error instanceof Error ? error.message : String(error)}`
             } : r))
         }
     }, [actualApiKey, runs])
-    
+
     React.useEffect(() => {
         enqueueRef.current = enqueue
     }, [enqueue])
@@ -489,34 +489,34 @@ export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: pro
     }, [runs, scrollToTop])
 
     const copyOutput = async (id: string, text: string) => {
-        try{ await navigator.clipboard.writeText(text); setCopiedId(id); setTimeout(()=>setCopiedId(null), 1000) } catch {}
+        try { await navigator.clipboard.writeText(text); setCopiedId(id); setTimeout(() => setCopiedId(null), 1000) } catch { }
     }
 
     return (
         <div className="h-full w-full flex flex-col bg-background dark:bg-[#282c34] overflow-hidden border-l border-border/50 dark:border-[#4a5568]">
-                <div className="px-3 md:px-5 py-2.5 md:py-3.5 border-b border-border/50 dark:border-[#4a5568] dark:bg-[#282c34]">
-                    <form onSubmit={onSubmit} className="space-y-2 md:space-y-3">
-                        <div className="relative group">
-                            <div className="absolute left-2.5 md:left-3 top-1/2 -translate-y-1/2 text-primary/70 dark:text-[#4fc3f7]/70 group-focus-within:text-primary dark:group-focus-within:text-[#4fc3f7] transition-colors z-10">
-                                <Command className="h-3.5 w-3.5 md:h-4 md:w-4" />
-                            </div>
-                            <input
-                                value={command}
-                                onChange={(e)=>setCommand(e.target.value)}
-                                placeholder={hasApiKey ? "Ask anything or use quick actions..." : "Set API key below to use AI"}
-                                disabled={!hasApiKey}
-                                className="w-full pl-9 md:pl-10 pr-16 md:pr-20 py-1.5 md:py-2 rounded-lg border border-border/60 dark:border-[#4a5568] bg-input dark:bg-[#3e4451] text-xs md:text-sm placeholder:text-muted-foreground/60 dark:placeholder:text-[#828997] dark:text-[#d4d4d4] focus:outline-none focus:ring-2 focus:ring-primary/30 dark:focus:ring-[#4fc3f7]/40 focus:border-primary/50 dark:focus:border-[#4fc3f7] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                            />
-                            <button 
-                                type="submit" 
-                                disabled={!command.trim() || !hasApiKey}
-                                className="absolute right-1 md:right-1.5 top-1/2 -translate-y-1/2 inline-flex items-center gap-1 md:gap-1.5 rounded-md bg-primary text-primary-foreground px-2 md:px-2.5 py-1 md:py-1.5 text-[10px] md:text-[11px] font-medium transition-all hover:bg-primary/90 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-primary shadow-sm"
-                            >
-                                <Play className="h-2.5 w-2.5 md:h-3 md:w-3" />
-                                <span className="hidden sm:inline">Run</span>
-                            </button>
+            <div className="px-3 md:px-5 py-2.5 md:py-3.5 border-b border-border/50 dark:border-[#4a5568] dark:bg-[#282c34]">
+                <form onSubmit={onSubmit} className="space-y-2 md:space-y-3">
+                    <div className="relative group">
+                        <div className="absolute left-2.5 md:left-3 top-1/2 -translate-y-1/2 text-primary/70 dark:text-[#4fc3f7]/70 group-focus-within:text-primary dark:group-focus-within:text-[#4fc3f7] transition-colors z-10">
+                            <Command className="h-3.5 w-3.5 md:h-4 md:w-4" />
                         </div>
-                    
+                        <input
+                            value={command}
+                            onChange={(e) => setCommand(e.target.value)}
+                            placeholder={hasApiKey ? "Ask anything or use quick actions..." : "Set API key below to use AI"}
+                            disabled={!hasApiKey}
+                            className="w-full pl-9 md:pl-10 pr-16 md:pr-20 py-1.5 md:py-2 rounded-lg border border-border/60 dark:border-[#4a5568] bg-input dark:bg-[#3e4451] text-xs md:text-sm placeholder:text-muted-foreground/60 dark:placeholder:text-[#828997] dark:text-[#d4d4d4] focus:outline-none focus:ring-2 focus:ring-primary/30 dark:focus:ring-[#4fc3f7]/40 focus:border-primary/50 dark:focus:border-[#4fc3f7] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        />
+                        <button
+                            type="submit"
+                            disabled={!command.trim() || !hasApiKey}
+                            className="absolute right-1 md:right-1.5 top-1/2 -translate-y-1/2 inline-flex items-center gap-1 md:gap-1.5 rounded-md bg-primary text-primary-foreground px-2 md:px-2.5 py-1 md:py-1.5 text-[10px] md:text-[11px] font-medium transition-all hover:bg-primary/90 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-primary shadow-sm"
+                        >
+                            <Play className="h-2.5 w-2.5 md:h-3 md:w-3" />
+                            <span className="hidden sm:inline">Run</span>
+                        </button>
+                    </div>
+
                     {hasApiKey && (
                         <div className="flex flex-col gap-2.5">
                             <div className="flex flex-col gap-1.5">
@@ -545,7 +545,7 @@ export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: pro
                                     })}
                                 </div>
                             </div>
-                            
+
                             <div className="flex flex-col gap-1.5">
                                 <div className="flex items-center gap-1.5">
                                     <BookOpenIcon className="h-3 w-3 text-muted-foreground/70 dark:text-[#9cdcfe]" />
@@ -679,34 +679,34 @@ export default function AgentInterface({ apiKey: propApiKey = "", hasApiKey: pro
                     ref={scrollContainerRef}
                     className="flex-1 min-h-0 overflow-y-auto px-3 md:px-5 py-3 md:py-4 space-y-2 md:space-y-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
                 >
-                {runs.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center h-full text-center py-16 px-4">
-                        <div className="relative mb-5">
-                            <div className="absolute inset-0 bg-primary/10 blur-2xl rounded-full" />
-                            <div className="relative inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-linear-to-br from-muted/60 to-muted/40 border border-border/40">
-                                <Bot className="h-10 w-10 text-muted-foreground/60" />
+                    {runs.length === 0 ? (
+                        <div className="flex flex-col items-center justify-center h-full text-center py-16 px-4">
+                            <div className="relative mb-5">
+                                <div className="absolute inset-0 bg-primary/10 blur-2xl rounded-full" />
+                                <div className="relative inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-linear-to-br from-muted/60 to-muted/40 border border-border/40">
+                                    <Bot className="h-10 w-10 text-muted-foreground/60" />
+                                </div>
                             </div>
+                            <h3 className="font-medium text-sm mb-1.5 text-foreground/90 dark:text-[#d4d4d4]">Ready to assist</h3>
+                            <p className="text-xs text-muted-foreground/70 dark:text-[#9cdcfe] max-w-[200px] leading-relaxed">
+                                Type a command or use quick actions to get started
+                            </p>
                         </div>
-                        <h3 className="font-medium text-sm mb-1.5 text-foreground/90 dark:text-[#d4d4d4]">Ready to assist</h3>
-                        <p className="text-xs text-muted-foreground/70 dark:text-[#9cdcfe] max-w-[200px] leading-relaxed">
-                            Type a command or use quick actions to get started
-                        </p>
-                    </div>
-                ) : runs.map(run => (
-                    <RunCard 
-                        key={run.id} 
-                        run={run} 
-                        onCopy={() => copyOutput(run.id, run.output)}
-                        copied={copiedId === run.id}
-                    />
-                ))}
+                    ) : runs.map(run => (
+                        <RunCard
+                            key={run.id}
+                            run={run}
+                            onCopy={() => copyOutput(run.id, run.output)}
+                            copied={copiedId === run.id}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
     )
 }
 
-function RunCard({ run, onCopy, copied }: { run: Run, onCopy: () => void, copied: boolean }){
+function RunCard({ run, onCopy, copied }: { run: Run, onCopy: () => void, copied: boolean }) {
     return (
         <div className="group/run rounded-lg border border-border/60 dark:border-[#4a5568] bg-card dark:bg-[#2c313c] transition-all hover:border-border/80 dark:hover:border-[#4fc3f7]/50">
             <div className="flex items-center justify-between px-2.5 md:px-3.5 py-2 md:py-2.5 border-b border-border/40 dark:border-[#4a5568] dark:bg-[#3e4451]/20 gap-2">
@@ -728,7 +728,7 @@ function RunCard({ run, onCopy, copied }: { run: Run, onCopy: () => void, copied
                     )}
                 </div>
                 {(run.status === "success" || run.status === "error") && (
-                    <button 
+                    <button
                         onClick={onCopy}
                         className="inline-flex items-center gap-1 md:gap-1.5 rounded-md border border-border/60 dark:border-[#4a5568] bg-secondary/30 dark:bg-[#3e4451] px-1.5 md:px-2 py-0.5 md:py-1 text-[10px] md:text-[11px] font-medium transition-all hover:bg-secondary dark:hover:bg-[#4a5568] active:scale-95 shrink-0"
                     >
@@ -746,7 +746,7 @@ function RunCard({ run, onCopy, copied }: { run: Run, onCopy: () => void, copied
                     </button>
                 )}
             </div>
-            
+
             <div className="px-2.5 md:px-3.5 py-2 md:py-3">
                 {run.status === "running" ? (
                     <div className="relative overflow-hidden rounded-md dark:bg-[#2c313c]/50 min-h-[120px]">
@@ -757,16 +757,16 @@ function RunCard({ run, onCopy, copied }: { run: Run, onCopy: () => void, copied
                     </div>
                 ) : run.status === "error" ? (
                     <div className="font-sans text-[10px] md:text-xs leading-relaxed text-red-600 dark:text-red-400 bg-transparent p-0 m-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [&_h1]:text-lg [&_h1]:font-bold [&_h1]:mt-4 [&_h1]:mb-2 [&_h2]:text-base [&_h2]:font-semibold [&_h2]:mt-3 [&_h2]:mb-2 [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:mt-2 [&_h3]:mb-1 [&_p]:mb-2 [&_p]:leading-relaxed [&_strong]:font-semibold [&_ul]:list-disc [&_ul]:ml-4 [&_ul]:mb-2 [&_ol]:list-decimal [&_ol]:ml-4 [&_ol]:mb-2 [&_li]:mb-1 [&_code]:bg-muted [&_code]:px-1 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-xs [&_pre]:bg-muted [&_pre]:p-2 [&_pre]:rounded [&_pre]:overflow-x-auto [&_pre]:mb-2">
-                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                {run.output}
-                            </ReactMarkdown>
-                        </div>
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                            {run.output}
+                        </ReactMarkdown>
+                    </div>
                 ) : (
                     <div className="font-sans text-[10px] md:text-xs leading-relaxed text-foreground/90 dark:text-[#d4d4d4] bg-transparent p-0 m-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [&_h1]:text-lg [&_h1]:font-bold [&_h1]:mt-4 [&_h1]:mb-2 [&_h1]:text-foreground dark:[&_h1]:text-[#d4d4d4] [&_h2]:text-base [&_h2]:font-semibold [&_h2]:mt-3 [&_h2]:mb-2 [&_h2]:text-foreground dark:[&_h2]:text-[#d4d4d4] [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:mt-2 [&_h3]:mb-1 [&_h3]:text-foreground dark:[&_h3]:text-[#d4d4d4] [&_p]:mb-2 [&_p]:leading-relaxed [&_p]:text-foreground/90 dark:[&_p]:text-[#d4d4d4] [&_strong]:font-semibold [&_strong]:text-foreground dark:[&_strong]:text-[#d4d4d4] [&_em]:italic [&_ul]:list-disc [&_ul]:ml-4 [&_ul]:mb-2 [&_ul]:text-foreground/90 dark:[&_ul]:text-[#d4d4d4] [&_ol]:list-decimal [&_ol]:ml-4 [&_ol]:mb-2 [&_ol]:text-foreground/90 dark:[&_ol]:text-[#d4d4d4] [&_li]:mb-1 [&_li]:text-foreground/90 dark:[&_li]:text-[#d4d4d4] [&_code]:bg-muted/50 dark:[&_code]:bg-[#3e4451]/50 [&_code]:px-1 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-xs [&_code]:font-mono [&_code]:text-foreground/90 dark:[&_code]:text-[#d4d4d4] [&_pre]:bg-muted/50 dark:[&_pre]:bg-[#3e4451]/50 [&_pre]:p-2 [&_pre]:rounded [&_pre]:overflow-x-auto [&_pre]:mb-2 [&_pre]:text-xs [&_blockquote]:border-l-4 [&_blockquote]:border-muted [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-2 [&_a]:text-primary [&_a]:underline [&_a]:hover:text-primary/80">
-                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                {run.output}
-                            </ReactMarkdown>
-                        </div>
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                            {run.output}
+                        </ReactMarkdown>
+                    </div>
                 )}
             </div>
         </div>
