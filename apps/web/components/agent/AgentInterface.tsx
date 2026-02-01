@@ -17,7 +17,7 @@ type Run = {
     output: string
 }
 
-const WS_URL = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:8080"
+const WS_URL = process.env.NEXT_PUBLIC_WS_URL || "https://noteskeeper-1.onrender.com/"
 const API_KEY_DOC_URL = "https://aistudio.google.com/app/apikey"
 
 const getApiKey = (): string => {
