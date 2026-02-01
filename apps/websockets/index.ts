@@ -30,7 +30,14 @@ interface Response {
   todos?: any[];
 }
 
-const wss = new WebSocketServer({ port: 8080, host: "localhost" });
+const port = Number(process.env.PORT) || 8080;
+
+const wss = new WebSocketServer({
+  port,
+  host: "0.0.0.0",
+});
+
+console.log(`WebSocket server listening on port ${port}`);
 
 wss.on("connection", (ws, req) => {
   const client = req.socket.remoteAddress;
