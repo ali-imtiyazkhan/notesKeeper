@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "duild": "",
+    "start": "bun index.ts",
     "dev": "bun index.ts"
   },
   "devDependencies": {
