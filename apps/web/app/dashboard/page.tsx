@@ -306,12 +306,8 @@ export default function Page() {
                 href="https://github.com/ali-imtiyazkhan"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-md border border-border/60 hover:text-black
-  dark:border-[#4a5568] bg-secondary/50 dark:bg-[#3e4451] backdrop-blur-sm 
-  px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground 
-  dark:text-[#4fc3f7] hover:bg-secondary/60 dark:hover:bg-[#4a5568] 
-  hover:border-border dark:hover:border-[#4fc3f7]/60 
-  transition-all duration-200 active:scale-95 group"
+                className="inline-flex items-center gap-1.5 rounded-md border border-border/60 hover:text-black dark:border-[#4a5568] bg-secondary/50 dark:bg-[#3e4451] backdrop-blur-sm px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground 
+                    dark:text-[#4fc3f7] hover:bg-secondary/60 dark:hover:bg-[#4a5568] hover:border-border dark:hover:border-[#4fc3f7]/60 transition-all duration-200 active:scale-95 group"
               >
                 <Github className="h-3.5 w-3.5 dark:text-[#4fc3f7] transition-transform duration-200 group-hover:rotate-12" />
                 <span className="tracking-wide">GitHub</span>
