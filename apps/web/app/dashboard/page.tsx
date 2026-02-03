@@ -7,6 +7,7 @@ import { SelectedNoteProvider } from "@/components/notes/selected-note-context"
 import BreadcrumbNote from "@/components/notes/BreadcrumbNote"
 import { CommandPalette } from "@/components/CommandPalette"
 import { Separator } from "@/components/ui/separator"
+import { Github } from "lucide-react";
 import { Command, GripVertical, GripHorizontal, Pencil, Key, Eye, EyeOff, X, Search } from "lucide-react"
 import {
   SidebarInset,
@@ -300,6 +301,21 @@ export default function Page() {
                 <Command className="h-3.5 w-3.5 dark:text-[#4fc3f7]" />
                 <span>AI Agent</span>
               </div>
+
+              <a
+                href="https://github.com/ali-imtiyazkhan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-md border border-border/60 hover:text-black
+  dark:border-[#4a5568] bg-secondary/50 dark:bg-[#3e4451] backdrop-blur-sm 
+  px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground 
+  dark:text-[#4fc3f7] hover:bg-secondary/60 dark:hover:bg-[#4a5568] 
+  hover:border-border dark:hover:border-[#4fc3f7]/60 
+  transition-all duration-200 active:scale-95 group"
+              >
+                <Github className="h-3.5 w-3.5 dark:text-[#4fc3f7] transition-transform duration-200 group-hover:rotate-12" />
+                <span className="tracking-wide">GitHub</span>
+              </a>
 
               {/* API Key Management - Creative Design */}
               {!showApiKeyInput ? (
